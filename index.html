@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diosarte · Barbería a domicilio</title>
+
+<!-- ============================================================
+     DIOSARTE — PROTOTIPO
+     Reemplazar antes de publicar:
+       1) WHATSAPP  (abajo, en el <script>) = número real de Diosarte
+       2) Fotos: bloques con clase .ph  (perfil y productos)
+       3) Servicios y precios  (sección #servicios y el <select> de agenda)
+       4) Productos y precios   (sección #productos)
+       5) Zona de cobertura, redes y datos de Pago Movil (busca la palabra REEMPLAZAR)
+     Contenido de ejemplo, listo para editar.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#33312C; --ink-deep:#22211C; --ink-2:#3D3A33;
+    --gold:#F0B811; --gold-deep:#8A6408;
+    --paper:#F5EEDF; --card:#FBF7EF;
+    --muted:#6E665A; --line:#E2D8C3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Instrument Sans",system-ui,sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.55;font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:600px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
+  .gold{color:var(--gold-deep)}
+
+  /* ---------- HERO ---------- */
+  .hero{background:var(--ink);color:var(--paper);padding:40px 0 44px;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(120% 80% at 50% -10%, rgba(240,184,17,.16), transparent 60%);pointer-events:none}
+  .hero .wrap{position:relative}
+  .avatar{
+    width:104px;height:104px;border-radius:50%;margin:0 auto 20px;
+    border:2px solid var(--gold);background:var(--ink-deep);
+    display:flex;align-items:center;justify-content:center;color:var(--gold);
+    overflow:hidden;
+  }
+  .avatar svg{width:46px;height:46px}
+  .brand{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(44px,12vw,58px);line-height:.95;letter-spacing:-.02em;color:var(--gold)}
+  .brand-sub{font-family:"Fraunces",serif;font-style:italic;font-size:19px;color:#EDE3CE;margin-top:8px}
+  .tagline{color:#C9BEA8;font-size:15px;margin-top:14px}
+  .chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#EDE3CE;
+    background:rgba(240,184,17,.1);border:1px solid rgba(240,184,17,.35);padding:6px 12px;border-radius:100px}
+  .chip svg{width:14px;height:14px;color:var(--gold)}
+  .socials{display:flex;gap:14px;justify-content:center;margin-top:18px}
+  .socials a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(240,184,17,.4);
+    display:flex;align-items:center;justify-content:center;color:var(--gold);transition:background .2s}
+  .socials a:hover{background:rgba(240,184,17,.14)}
+  .socials svg{width:19px;height:19px}
+  .btn-cta{display:inline-flex;align-items:center;gap:8px;margin-top:26px;
+    background:var(--gold);color:var(--ink);font-weight:600;font-size:16px;
+    padding:13px 26px;border-radius:100px;text-decoration:none;transition:transform .15s}
+  .btn-cta:hover{transform:translateY(-1px)}
+  .btn-cta svg{width:18px;height:18px}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:38px 0}
+  .sec-head{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+  .sec-head svg{width:22px;height:22px;color:var(--gold-deep);flex-shrink:0}
+  h2{font-family:"Fraunces",serif;font-weight:600;font-size:27px;letter-spacing:-.01em;line-height:1.1}
+  .sec-note{color:var(--muted);font-size:14px;margin-top:2px}
+
+  /* ---------- SERVICIOS ---------- */
+  .svc{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .svc-item{display:flex;justify-content:space-between;gap:14px;padding:16px 18px;border-bottom:1px solid var(--line)}
+  .svc-item:last-child{border-bottom:none}
+  .svc-item h3{font-size:16px;font-weight:600}
+  .svc-item p{font-size:13.5px;color:var(--muted);margin-top:3px}
+  .svc-price{font-family:"Fraunces",serif;font-weight:600;font-size:20px;color:var(--gold-deep);white-space:nowrap}
+  .svc-foot{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+
+  /* ---------- PRODUCTOS ---------- */
+  .prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .prod{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .ph{position:relative;aspect-ratio:1/1;background:#EDE4D2;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;color:#B7A98C;gap:6px;border-bottom:1px dashed var(--gold-deep)}
+  .ph svg{width:34px;height:34px;opacity:.65}
+  .ph span{font-size:11px;letter-spacing:.03em}
+  .prod-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .prod-body h3{font-size:15px;font-weight:600;line-height:1.25}
+  .prod-body .pdesc{font-size:12.5px;color:var(--muted);flex:1}
+  .prod-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
+  .prod-price{font-family:"Fraunces",serif;font-weight:600;font-size:18px;color:var(--gold-deep)}
+  .btn-buy{display:inline-flex;align-items:center;gap:5px;background:var(--ink);color:var(--paper);
+    border:none;font:inherit;font-weight:600;font-size:13px;padding:8px 13px;border-radius:100px;cursor:pointer;transition:background .2s}
+  .btn-buy:hover{background:var(--ink-deep)}
+  .btn-buy svg{width:14px;height:14px}
+
+  /* ---------- FIDELIZACIÓN ---------- */
+  .loyal{background:var(--ink);color:var(--paper);border-radius:18px;padding:26px 22px;text-align:center}
+  .loyal h2{color:var(--gold)}
+  .loyal p{color:#C9BEA8;font-size:14.5px;margin-top:8px;max-width:42ch;margin-left:auto;margin-right:auto}
+  .stamps{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+  .stamp{width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(240,184,17,.45);
+    display:flex;align-items:center;justify-content:center;font-family:"Fraunces",serif;color:rgba(240,184,17,.5);font-size:15px}
+  .stamp.done{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+  .stamp.free{border-style:solid;border-color:var(--gold);color:var(--gold)}
+  .stamp.free svg{width:22px;height:22px}
+  .loyal small{display:block;margin-top:16px;color:#A79D88;font-size:12.5px}
+
+  /* ---------- AGENDA ---------- */
+  .form{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px}
+  .field{margin-bottom:15px}
+  .field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
+  .field input,.field select{width:100%;font:inherit;font-size:15px;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 12px;appearance:none}
+  .field input:focus,.field select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+  .field select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A6408' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:38px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .btn-agendar{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--gold);color:var(--ink);border:none;font:inherit;font-weight:600;font-size:16px;
+    padding:14px;border-radius:100px;cursor:pointer;margin-top:6px;transition:transform .15s}
+  .btn-agendar:hover{transform:translateY(-1px)}
+  .btn-agendar svg{width:19px;height:19px}
+  .err{color:#B4232A;font-size:13px;margin-top:10px;text-align:center;display:none}
+  .confirm{display:none;margin-top:16px;background:#fff;border:1px solid var(--gold);border-radius:14px;padding:16px;text-align:center}
+  .confirm p{font-size:14px;color:var(--ink-2);margin-bottom:12px}
+  .confirm p b{color:var(--ink)}
+  .btn-cal{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:var(--paper);
+    text-decoration:none;font-weight:600;font-size:14px;padding:11px 18px;border-radius:100px}
+  .btn-cal svg{width:16px;height:16px}
+
+  /* ---------- PAGO / CONTACTO ---------- */
+  .pay{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:18px 20px}
+  .pay h3{font-size:15px;margin-bottom:4px}
+  .pay p{font-size:14.5px;color:var(--ink-2)}
+  .pay .muted{color:var(--muted);font-size:13px;margin-top:2px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink-deep);color:#A79D88;text-align:center;padding:28px 22px;margin-top:20px}
+  footer .fbrand{font-family:"Fraunces",serif;color:var(--gold);font-size:22px;font-weight:600}
+  footer .fmade{font-size:12px;margin-top:14px;color:#7C7362}
+  footer a{color:var(--gold);text-decoration:none}
+
+  @media (max-width:420px){
+    .prod-grid{grid-template-columns:1fr}
+    .stamp{width:42px;height:42px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <!-- REEMPLAZAR: foto de perfil / logo -->
+    <div class="avatar" title="Foto de perfil">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+    </div>
+    <div class="brand">Diosarte</div>
+    <div class="brand-sub">Barbería a domicilio</div>
+    <p class="tagline">La barbería llega a ti. Tú solo di dónde y cuándo.</p>
+
+    <div class="chips">
+      <!-- REEMPLAZAR: zona de cobertura real -->
+      <span class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Cobertura: [tu zona]
+      </span>
+      <span class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Con cita previa
+      </span>
+    </div>
+
+    <!-- REEMPLAZAR: enlaces reales de redes -->
+    <div class="socials">
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.5 3.4 3.5 3.6V9c-1.3 0-2.5-.4-3.5-1.1v6.4c0 3.2-2.4 5.7-5.5 5.7S6 17.5 6 14.5 8.4 8.8 11.5 8.8c.3 0 .6 0 .9.1v2.6c-.3-.1-.6-.2-.9-.2-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7V3h2.3z"/></svg></a>
+    </div>
+
+    <div><a class="btn-cta" href="#agendar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Agendar mi cita
+    </a></div>
+  </div>
+</header>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+      <div><h2>Servicios</h2><div class="sec-note">Precios de ejemplo — edítalos con los tuyos</div></div>
+    </div>
+
+    <!-- REEMPLAZAR: servicios y precios reales -->
+    <div class="svc">
+      <div class="svc-item"><div><h3>Corte clásico</h3><p>Corte a tu estilo, con máquina o tijera.</p></div><div class="svc-price">$7</div></div>
+      <div class="svc-item"><div><h3>Corte + barba</h3><p>Corte + perfilado y arreglo de barba.</p></div><div class="svc-price">$10</div></div>
+      <div class="svc-item"><div><h3>Servicio premium</h3><p>Corte + barba + limpieza facial + cejas.</p></div><div class="svc-price">$14</div></div>
+      <div class="svc-item"><div><h3>Solo barba</h3><p>Diseño, perfilado y arreglo completo.</p></div><div class="svc-price">$5</div></div>
+      <div class="svc-item"><div><h3>Corte infantil</h3><p>Para los más pequeños de la casa.</p></div><div class="svc-price">$6</div></div>
+    </div>
+    <p class="svc-foot">A domicilio incluido dentro de la zona de cobertura.</p>
+  </div>
+</section>
+
+<!-- ============ PRODUCTOS ============ -->
+<section id="productos">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h12l-1 7H7L6 2z"/><path d="M7 9v11a2 2 0 002 2h6a2 2 0 002-2V9"/></svg>
+      <div><h2>Productos</h2><div class="sec-note">Toca "Comprar" y el pedido se arma en tu WhatsApp</div></div>
+    </div>
+
+    <!-- REEMPLAZAR: productos, fotos y precios reales -->
+    <div class="prod-grid">
+      <article class="prod">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Foto del producto</span></div>
+        <div class="prod-body">
+          <h3>Cera mate para cabello</h3>
+          <p class="pdesc">Fijación fuerte, acabado natural sin brillo.</p>
+          <div class="prod-row"><span class="prod-price">$8</span>
+            <button class="btn-buy" data-prod="Cera mate para cabello" data-price="$8"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.7.8-2.8-.2-.3A8 8 0 1112 20z"/></svg>Comprar</button></div>
+        </div>
+      </article>
+      <article class="prod">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Foto del producto</span></div>
+        <div class="prod-body">
+          <h3>Aceite para barba</h3>
+          <p class="pdesc">Suaviza, hidrata y da brillo a la barba.</p>
+          <div class="prod-row"><span class="prod-price">$9</span>
+            <button class="btn-buy" data-prod="Aceite para barba" data-price="$9"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.7.8-2.8-.2-.3A8 8 0 1112 20z"/></svg>Comprar</button></div>
+        </div>
+      </article>
+      <article class="prod">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Foto del producto</span></div>
+        <div class="prod-body">
+          <h3>Pomada clásica</h3>
+          <p class="pdesc">Peinados con control y brillo, fácil de lavar.</p>
+          <div class="prod-row"><span class="prod-price">$8</span>
+            <button class="btn-buy" data-prod="Pomada clásica" data-price="$8"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.7.8-2.8-.2-.3A8 8 0 1112 20z"/></svg>Comprar</button></div>
+        </div>
+      </article>
+      <article class="prod">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Foto del producto</span></div>
+        <div class="prod-body">
+          <h3>Shampoo fortalecedor</h3>
+          <p class="pdesc">Limpieza profunda para cabello y cuero cabelludo.</p>
+          <div class="prod-row"><span class="prod-price">$7</span>
+            <button class="btn-buy" data-prod="Shampoo fortalecedor" data-price="$7"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.7.8-2.8-.2-.3A8 8 0 1112 20z"/></svg>Comprar</button></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FIDELIZACIÓN ============ -->
+<section id="fidelizacion">
+  <div class="wrap">
+    <div class="loyal">
+      <h2>Tu 6.º corte va por la casa</h2>
+      <p>Con cada servicio te firmo tu tarjeta Diosarte. Junta cinco y el sexto es gratis. Así de simple.</p>
+      <div class="stamps">
+        <div class="stamp done">1</div>
+        <div class="stamp done">2</div>
+        <div class="stamp done">3</div>
+        <div class="stamp">4</div>
+        <div class="stamp">5</div>
+        <div class="stamp free" title="Gratis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9 12 2"/></svg></div>
+      </div>
+      <small>La tarjeta es física — te la firmo en cada visita.</small>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AGENDA ============ -->
+<section id="agendar">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <div><h2>Agenda tu cita</h2><div class="sec-note">Llena los datos y te llega todo listo por WhatsApp</div></div>
+    </div>
+
+    <div class="form">
+      <div class="field">
+        <label for="f-nombre">Tu nombre</label>
+        <input id="f-nombre" type="text" placeholder="Ej. Carlos Pérez">
+      </div>
+      <div class="field">
+        <label for="f-servicio">Servicio</label>
+        <!-- REEMPLAZAR: mismos servicios/precios que arriba -->
+        <select id="f-servicio">
+          <option value="" data-price="">Elige un servicio…</option>
+          <option value="Corte clásico" data-price="$7">Corte clásico — $7</option>
+          <option value="Corte + barba" data-price="$10">Corte + barba — $10</option>
+          <option value="Servicio premium" data-price="$14">Servicio premium — $14</option>
+          <option value="Solo barba" data-price="$5">Solo barba — $5</option>
+          <option value="Corte infantil" data-price="$6">Corte infantil — $6</option>
+        </select>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="f-fecha">Fecha</label><input id="f-fecha" type="date"></div>
+        <div class="field"><label for="f-hora">Hora</label><input id="f-hora" type="time"></div>
+      </div>
+      <div class="field">
+        <label for="f-dir">Dirección donde estarás</label>
+        <input id="f-dir" type="text" placeholder="Calle, sector, referencia…">
+      </div>
+      <button class="btn-agendar" id="btn-agendar">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.7.8-2.8-.2-.3A8 8 0 1112 20z"/></svg>
+        Agendar por WhatsApp
+      </button>
+      <div class="err" id="err">Completa el servicio, la fecha, la hora y la dirección para continuar.</div>
+
+      <div class="confirm" id="confirm">
+        <p><b>¡Listo!</b> Ya se abrió tu WhatsApp con la cita. Agrega también el recordatorio a tu calendario:</p>
+        <a class="btn-cal" id="cal-link" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Agregar a Google Calendar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAGO / CONTACTO ============ -->
+<section id="pago" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      <div><h2>Pago y contacto</h2></div>
+    </div>
+    <!-- REEMPLAZAR: datos de Pago Móvil reales -->
+    <div class="pay">
+      <h3>Pago Móvil</h3>
+      <p>Banco [Nombre] · [0000]</p>
+      <p>CI: V-[00.000.000] · Tel: [0000-0000000]</p>
+      <p class="muted">También aceptamos efectivo al momento del servicio.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fbrand">Diosarte</div>
+  <div style="font-size:13px;margin-top:4px;color:#A79D88">Barbería a domicilio</div>
+  <div class="fmade">Sitio por <a href="https://jacobofarias.com">Jacobo Farías</a></div>
+</footer>
+
+<script>
+  /* ====== CONFIG ====== */
+  const WHATSAPP = "58412XXXXXXX";   // <-- REEMPLAZAR con el número real de Diosarte (formato internacional, sin +)
+
+  const waLink = (msg) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+
+  /* ====== PRODUCTOS -> WhatsApp ====== */
+  document.querySelectorAll('.btn-buy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const p = btn.dataset.prod, price = btn.dataset.price;
+      const msg = `¡Hola Diosarte! 👋 Me interesa este producto:\n• ${p} — ${price}\n¿Está disponible?`;
+      window.open(waLink(msg), '_blank');
+    });
+  });
+
+  /* ====== AGENDA -> WhatsApp + Google Calendar ====== */
+  const $ = id => document.getElementById(id);
+  // fecha mínima = hoy
+  $('f-fecha').min = new Date().toISOString().split('T')[0];
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function gcalDates(fecha, hora){
+    // start = fecha+hora, end = +45 min  (formato local YYYYMMDDTHHMMSS)
+    const start = new Date(`${fecha}T${hora}`);
+    const end = new Date(start.getTime() + 45*60000);
+    const fmt = d => `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
+    return `${fmt(start)}/${fmt(end)}`;
+  }
+
+  $('btn-agendar').addEventListener('click', () => {
+    const nombre = $('f-nombre').value.trim();
+    const sel = $('f-servicio');
+    const servicio = sel.value;
+    const price = sel.options[sel.selectedIndex].dataset.price || '';
+    const fecha = $('f-fecha').value;
+    const hora = $('f-hora').value;
+    const dir = $('f-dir').value.trim();
+
+    if(!servicio || !fecha || !hora || !dir){
+      $('err').style.display = 'block';
+      return;
+    }
+    $('err').style.display = 'none';
+
+    const msg =
+      `¡Hola Diosarte! 👋 Quiero agendar una cita:\n` +
+      `• Servicio: ${servicio} (${price})\n` +
+      (nombre ? `• Nombre: ${nombre}\n` : ``) +
+      `• Fecha: ${fecha}\n` +
+      `• Hora: ${hora}\n` +
+      `• Dirección: ${dir}\n` +
+      `¿Me confirmas? ¡Gracias!`;
+    window.open(waLink(msg), '_blank');
+
+    // Google Calendar
+    const title = `Diosarte — ${servicio}`;
+    const details = `Servicio: ${servicio} (${price})` + (nombre ? `\nCliente: ${nombre}` : ``);
+    const cal = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
+      `&text=${encodeURIComponent(title)}` +
+      `&dates=${gcalDates(fecha,hora)}` +
+      `&location=${encodeURIComponent(dir)}` +
+      `&details=${encodeURIComponent(details)}`;
+    $('cal-link').href = cal;
+    $('confirm').style.display = 'block';
+  });
+</script>
+</body>
+</html>
