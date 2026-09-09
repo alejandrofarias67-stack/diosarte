@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Propuesta · Diosarte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#33312C;
+    --ink-deep:#26251F;
+    --gold:#F0B811;
+    --gold-deep:#8A6408;
+    --paper:#F5EEDF;
+    --card:#FBF7EE;
+    --muted:#6E665A;
+    --line:#DED4BF;
+    --line-ink:rgba(240,184,17,.28);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Instrument Sans",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+  p{max-width:62ch}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:64px 0 60px;
+    border-bottom:3px solid var(--gold);
+    position:relative;
+  }
+  .hero .wrap{position:relative}
+  .kicker{
+    font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:26px;
+  }
+  .wordmark{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:clamp(52px,13vw,92px);
+    line-height:.92;
+    letter-spacing:-.02em;
+    color:var(--gold);
+  }
+  .wordmark::after{
+    content:"";display:block;width:74px;height:3px;background:var(--gold);
+    margin-top:22px;border-radius:2px;
+  }
+  .hero-sub{
+    font-family:"Fraunces",serif;
+    font-size:clamp(20px,4.4vw,26px);
+    font-weight:400;font-style:italic;
+    margin-top:20px;color:#EDE3CE;
+  }
+  .hero-line{
+    margin-top:20px;font-size:17px;color:#CabfA9;max-width:52ch;
+  }
+  .hero-meta{
+    margin-top:34px;font-size:14px;color:#A79D88;
+    padding-top:18px;border-top:1px solid rgba(240,184,17,.22);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:46px 0}
+  section + section{border-top:1px solid var(--line)}
+  h2{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:clamp(26px,5vw,32px);
+    line-height:1.12;
+    letter-spacing:-.01em;
+    margin-bottom:20px;
+  }
+  .lead p + p{margin-top:16px}
+  .greet{
+    font-family:"Fraunces",serif;font-style:italic;
+    font-size:clamp(22px,4.6vw,27px);line-height:1.3;font-weight:400;
+    color:var(--ink);
+  }
+
+  /* ---------- INCLUDE LIST ---------- */
+  .feat{list-style:none;margin-top:8px}
+  .feat li{
+    position:relative;padding:16px 0 16px 30px;
+    border-bottom:1px solid var(--line);
+  }
+  .feat li:last-child{border-bottom:none}
+  .feat li::before{
+    content:"";position:absolute;left:0;top:24px;
+    width:14px;height:3px;background:var(--gold);border-radius:2px;
+  }
+  .feat b{font-weight:600}
+  .feat span{display:block;color:var(--muted);font-size:15.5px;margin-top:2px}
+  .aside{
+    margin-top:26px;background:var(--card);border:1px solid var(--line);
+    border-left:3px solid var(--gold);border-radius:8px;
+    padding:18px 20px;font-size:15.5px;color:var(--muted);
+  }
+  .aside b{color:var(--ink)}
+
+  /* ---------- FLOW ---------- */
+  .flow{display:grid;gap:14px;margin-top:6px}
+  .step{
+    display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:18px 20px;
+  }
+  .step .n{
+    font-family:"Fraunces",serif;font-weight:600;font-size:20px;
+    color:var(--ink);background:var(--gold);
+    width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .step p{margin:0;font-size:15.5px}
+  .step b{display:block;margin-bottom:2px}
+
+  /* ---------- PHASES ---------- */
+  .phase{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:22px 22px;margin-top:16px;
+  }
+  .phase.hl{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+  .phase-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:14px;flex-wrap:wrap;
+  }
+  .phase-name{font-family:"Fraunces",serif;font-weight:600;font-size:19px}
+  .phase-name em{font-style:normal;color:var(--gold-deep);font-weight:600}
+  .price{
+    font-family:"Fraunces",serif;font-weight:600;
+    font-size:26px;white-space:nowrap;
+  }
+  .price.free{color:var(--gold-deep)}
+  .phase-note{
+    font-size:13.5px;color:var(--muted);margin-top:-2px;text-align:right;
+    width:100%;
+  }
+  .phase p{margin-top:12px;font-size:15.5px;color:var(--muted);max-width:60ch}
+  .phase p b{color:var(--ink)}
+  .badge{
+    display:inline-block;margin-top:12px;font-size:13px;font-weight:600;
+    color:var(--gold-deep);background:rgba(240,184,17,.16);
+    padding:5px 11px;border-radius:20px;
+  }
+
+  /* ---------- NEED LIST ---------- */
+  .need{columns:2;column-gap:32px;list-style:none;margin-top:6px}
+  .need li{
+    break-inside:avoid;padding:9px 0 9px 22px;position:relative;font-size:15.5px;
+  }
+  .need li::before{
+    content:"";position:absolute;left:0;top:16px;width:9px;height:9px;
+    background:var(--gold);border-radius:50%;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta{background:var(--ink);color:var(--paper);border:none}
+  .cta h2{color:var(--paper)}
+  .cta p{color:#CABFA9}
+  .signoff{
+    margin-top:26px;font-family:"Fraunces",serif;font-style:italic;
+    font-size:19px;color:var(--gold);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink-deep);color:#A79D88;padding:30px 0;font-size:14.5px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
+  footer b{color:var(--paper);font-weight:600}
+  footer a{color:var(--gold);text-decoration:none}
+
+  @media (max-width:560px){
+    .need{columns:1}
+    .phase-note{text-align:left}
+    .price{font-size:23px}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .wordmark::after{animation:draw .7s ease .2s both}
+    @keyframes draw{from{width:0}to{width:74px}}
+  }
+  .protobtn{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--ink);
+    font-weight:600;text-decoration:none;padding:13px 24px;border-radius:100px;font-size:16px}
+  .protobtn.ghost{background:transparent;color:var(--gold);border:1px solid rgba(240,184,17,.55)}
+  .protobtn svg{width:18px;height:18px}
+  .proto-hero{margin-top:22px}
+  .proto-note{font-size:13px;color:#A79D88;margin-top:12px}
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="kicker">Propuesta de sitio web</div>
+      <div class="wordmark">Diosarte</div>
+      <div class="hero-sub">Barbería a domicilio</div>
+      <p class="hero-line">Una web que agenda tus citas, muestra tus productos y coordina cada pago — todo canalizado a tu WhatsApp, desde un solo enlace en tu bio.</p>
+      <div class="proto-hero">
+        <a class="protobtn ghost" href="https://alejandrofarias67-stack.github.io/diosarte/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+          Ver el prototipo en vivo
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap lead">
+      <p class="greet">¿Qué tal, hermano? Estuve dándole vueltas a Diosarte y a algo que me parece tu mayor fortaleza: tú no esperas al cliente en un local, tú le llegas a la casa.</p>
+      <p style="margin-top:18px">Eso es un golazo. Pero también significa que cada cita se vuelve un ir y venir de mensajes: la fecha, la hora, dónde estás, cuánto es, el pago… Y en medio de tantos chats, se cuelan cosas. La idea de esta web es simple: ordenar todo eso para que trabaje por ti las 24 horas, sin que dejes de dar tu trato personal de siempre.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>No es una página bonita y ya</h2>
+      <p>Es un sistema pensado para tu forma de trabajar. El cliente hace el trabajo de llenar sus datos desde la página, y a ti te llega todo listo para responder, coordinar y cobrar. Un solo enlace para tu bio de Instagram y TikTok, y de ahí sale todo.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Qué lleva por dentro</h2>
+      <ul class="feat">
+        <li>
+          <b>Tu marca, con el ángulo delivery</b>
+          <span>Diosarte, tu zona de cobertura y tus redes, presentados como se merece.</span>
+        </li>
+        <li>
+          <b>Menú de servicios con precios</b>
+          <span>Cada servicio con su precio y una descripción corta, claro de un vistazo.</span>
+        </li>
+        <li>
+          <b>Catálogo de productos</b>
+          <span>Cada producto de cuidado capilar con foto y precio. El cliente toca “Comprar” y se le abre WhatsApp con el mensaje ya escrito, listo para enviarte.</span>
+        </li>
+        <li>
+          <b>Agenda en línea</b>
+          <span>Elige servicio, fecha, hora y escribe la dirección donde estará. Al confirmar, se arma solo un mensaje de WhatsApp con todos esos datos y el precio, y te llega a ti para cerrar el pago.</span>
+        </li>
+        <li>
+          <b>Recordatorio en el calendario</b>
+          <span>Al agendar, tanto el cliente como tú pueden guardar la cita en Google Calendar con un toque, para que ninguno de los dos la olvide.</span>
+        </li>
+        <li>
+          <b>Pago y contacto siempre a la vista</b>
+          <span>Tus datos de Pago Móvil y tus redes, visibles en todo momento.</span>
+        </li>
+      </ul>
+      <div class="aside">Tu <b>tarjeta de fidelización</b> (el 6.º corte gratis) se queda tal cual la manejas hoy: física, firmada por ti en cada servicio. No la tocamos, funciona perfecto así.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Cómo funciona, en tres pasos</h2>
+      <div class="flow">
+        <div class="step">
+          <div class="n">1</div>
+          <p><b>El cliente agenda desde la página</b>Escoge su servicio o producto, pone fecha, hora y dirección.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <p><b>Te llega todo listo a tu WhatsApp</b>Un solo mensaje con el servicio, el precio, la dirección y la hora. Nada que copiar ni buscar.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <p><b>Confirmas, coordinas y cobras</b>Sigues cerrando cada cita con tu trato de siempre. La web ordena; el trato lo pones tú.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Cómo lo trabajamos y cuánto es</h2>
+
+      <div class="phase">
+        <div class="phase-head">
+          <div class="phase-name">Fase 0 · Prueba gratis (30 días)</div>
+          <div class="price free">$0</div>
+        </div>
+        <p>Te entrego la web completa, publicada y funcionando, para que la uses un mes sin costo y la pruebes con clientes reales. Lo único que te pido a cambio: poder mostrar el proyecto en mi portafolio, un testimonio tuyo cuando veas resultados, y que me recomiendes si quedas contento.</p>
+      </div>
+
+      <div class="phase hl">
+        <div class="phase-head">
+          <div class="phase-name">Fase 1 · Activación <em>(único)</em></div>
+          <div class="price">$30</div>
+          <div class="phase-note">Precio especial de lanzamiento · tarifa normal $50–$80</div>
+        </div>
+        <p>Cuando decidas quedarte: conexión a tu dominio, cambio de las fotos y textos de prueba por los definitivos, ajuste fino de tu zona de cobertura, optimización y publicación estable.</p>
+        <span class="badge">Incluye tu primer mes de mantenimiento gratis</span>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">
+          <div class="phase-name">Fase 2 · Mantenimiento</div>
+          <div class="price">$10<span style="font-size:15px;font-weight:400;color:var(--muted)">/mes</span></div>
+        </div>
+        <p>Actualizo precios, agrego productos nuevos, cambio horarios o servicios y hago ajustes menores, más la gestión de tu dominio y hosting. Arranca a partir del segundo mes.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">
+          <div class="phase-name">Fase 3 · Ampliaciones <em>(opcional)</em></div>
+          <div class="price" style="font-size:19px;color:var(--muted)">A cotizar</div>
+        </div>
+        <p>Para cuando el negocio lo pida: sincronización automática de la cita entre tu calendario y el del cliente, tienda en línea con carrito y pago integrado, y la tarjeta de fidelización digital. Se cotizan aparte, sin apuro.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Lo que necesito de tu parte</h2>
+      <p style="margin-bottom:14px">Para dejar la web definitiva en la Fase 1:</p>
+      <ul class="need">
+        <li>Tu nombre o logo en limpio</li>
+        <li>Fotos reales de tu trabajo</li>
+        <li>Fotos de los productos</li>
+        <li>Lista final de servicios y precios</li>
+        <li>Catálogo de productos con precios</li>
+        <li>Tu zona de cobertura</li>
+        <li>Tus datos de pago y contacto</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>El siguiente paso</h2>
+      <p>Si te hace sentido, arrancamos con la prueba gratis. En pocos días lo tienes publicado y funcionando, sin ningún compromiso hasta que veas con tus propios ojos si te sirve. Y si te sirve, seguimos.</p>
+      <div class="signoff">Hablamos, hermano. Vamos a montar esto bonito.</div>
+      <div style="margin-top:24px">
+        <a class="protobtn" href="https://alejandrofarias67-stack.github.io/diosarte/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+          Míralo funcionando aquí
+        </a>
+        <div class="proto-note">Es un prototipo con contenido de ejemplo: la idea es que veas cómo se sentiría tu barbería en línea.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap" style="flex-direction:column;align-items:flex-start;gap:8px">
+      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+        <b style="font-family:'Fraunces',serif;font-size:20px;color:var(--gold)">Rendiave</b>
+        <span style="color:#A79D88;font-size:13px">Convertimos tu presencia digital en un sistema de ingresos.</span>
+      </div>
+      <div style="display:flex;gap:8px 20px;flex-wrap:wrap">
+        <a href="https://rendiave.com" target="_blank" rel="noopener">rendiave.com</a>
+        <a href="https://instagram.com/rendiave" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@rendiave" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.linkedin.com/company/rendiave" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
